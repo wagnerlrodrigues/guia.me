@@ -1,0 +1,136 @@
+MANUAL CENTRAL — como usar (imagens via Google Drive)
+========================================================
+
+1) ESTRUTURA DE PASTAS
+   manual-central/
+     ├─ index.html
+     ├─ style.css
+     ├─ script.js
+     └─ LEIA-ME.txt
+
+   A pasta "imagens" não é mais necessária: as imagens agora são
+   carregadas diretamente do Google Drive.
+
+2) DEIXAR AS IMAGENS PÚBLICAS NO DRIVE
+   Para cada arquivo .jpg do manual:
+   a) No Google Drive, clique com o botão direito no arquivo.
+   b) Escolha "Compartilhar" > "Compartilhar".
+   c) Em "Acesso geral", mude de "Restrito" para
+      "Qualquer pessoa com o link".
+   d) Confirme que o papel está como "Leitor".
+   e) Clique em "Copiar link".
+
+   Sem esse passo, o link não vai funcionar dentro do site — o
+   Drive vai bloquear o carregamento da imagem.
+
+3) COLAR OS LINKS NO SCRIPT
+   Abra script.js e procure o array MANUAL. Cada ficha tem dois
+   campos de link, ambos com um comentário indicando a que se
+   referem:
+
+     {
+       driveLink: "", // CENTRAL_MANUAL_capa
+       youtubeLink: "", // vídeo sobre: CENTRAL_MANUAL_capa
+       notes: "", // observações sobre: CENTRAL_MANUAL_capa
+       title: "Capa do manual",
+       subtitle: "Página de abertura do manual",
+       category: "geral",
+       keywords: "capa inicio abertura manual central",
+     },
+
+   - "driveLink": cole o link do Google Drive da imagem. Aceita:
+       https://drive.google.com/file/d/ID_DO_ARQUIVO/view?usp=sharing
+       https://drive.google.com/open?id=ID_DO_ARQUIVO
+
+   - "youtubeLink": cole o link do vídeo no YouTube (opcional).
+     Aceita:
+       https://www.youtube.com/watch?v=ID_DO_VIDEO
+       https://youtu.be/ID_DO_VIDEO
+       https://www.youtube.com/shorts/ID_DO_VIDEO
+
+   - "notes": texto livre e opcional com observações sobre a
+     página. Aparece num painel à esquerda quando a ficha é
+     aberta (tanto no visualizador de imagem quanto no de vídeo).
+     Aceita textos longos, o painel tem rolagem própria. Para
+     quebrar linha, escreva o texto com crases em vez de aspas
+     duplas, assim:
+
+       notes: `Primeira linha de observação.
+Segunda linha de observação.
+Terceira linha, e assim por diante.`,
+
+   IMPORTANTE: cada botão só aparece na ficha se o link
+   correspondente estiver preenchido. Ficha sem "driveLink" não
+   mostra o botão "Abrir ficha"; ficha sem "youtubeLink" não
+   mostra o botão "Assistir vídeo". Se os dois estiverem vazios,
+   a ficha aparece sem nenhum botão. O painel de observações
+   também só aparece se "notes" estiver preenchido.
+
+   O sistema extrai automaticamente o ID de cada link e monta a
+   URL correta — não precisa editar mais nada.
+
+4) ABRIR NO VS CODE
+   - Abra a pasta "manual-central" no VS Code.
+   - Clique com o botão direito em "index.html" e escolha
+     "Open with Live Server".
+   - O navegador abre a página pronta para pesquisa.
+
+5) COMO FUNCIONA A BUSCA
+   - O usuário digita uma dúvida (ex.: "como lançar notas",
+     "gerar cartão resposta", "bater ponto") na caixa de busca.
+   - O sistema filtra, em tempo real, as fichas cujo título,
+     categoria ou palavras-chave combinem com o que foi digitado,
+     ignorando acentos e maiúsculas/minúsculas.
+   - As abas no topo também filtram por seção.
+   - Cada ficha mostra até dois botões: "Abrir ficha" (imagem do
+     Drive) e "Assistir vídeo" (vídeo do YouTube) — cada um só
+     aparece se o link correspondente foi cadastrado.
+   - "Abrir ficha" abre um visualizador com a imagem em tamanho
+     grande, zoom por botões ou scroll do mouse, arraste para
+     navegar quando ampliado, setas para ir para a ficha anterior
+     ou seguinte, tecla ESC ou clique fora para fechar. Também
+     tem um botão "Abrir arquivo completo no Drive" que leva
+     direto ao arquivo original no Google Drive, em nova aba.
+   - "Assistir vídeo" abre um player do YouTube incorporado, com
+     um botão para abrir o mesmo vídeo diretamente no YouTube.
+   - Se a ficha tiver observações cadastradas ("notes"), elas
+     aparecem num painel à esquerda do visualizador, com rolagem
+     própria para textos longos. Em telas pequenas, esse painel
+     desce para baixo do conteúdo principal.
+   - Se a ficha tiver um link cadastrado mas o arquivo não estiver
+     compartilhado publicamente, aparece um aviso amigável no
+     lugar da imagem, explicando o problema.
+
+6) OBSERVAÇÕES SOBRE O GOOGLE DRIVE
+   - O Drive não foi feito para servir imagens em massa: em uso
+     muito intenso ele pode aplicar limites temporários de
+     acesso. Para um manual interno com uso moderado isso
+     dificilmente é um problema.
+   - Se algum dia você quiser mais velocidade e confiabilidade,
+     a alternativa é hospedar os .jpg na própria pasta do site
+     (como na versão anterior deste projeto) ou em um serviço de
+     imagens dedicado.
+
+7) PERSONALIZAR / ADICIONAR NOVAS PÁGINAS
+   Abra script.js e edite o array MANUAL. Cada item segue este
+   formato:
+
+     {
+       driveLink: "https://drive.google.com/file/d/ID/view?usp=sharing",
+       title: "Notas",
+       category: "notas",
+       keywords: "notas lancar notas boletim ...",
+     },
+
+   Para criar uma nova seção/categoria, adicione uma entrada em
+   CATEGORIES (no topo do arquivo), por exemplo:
+
+     biblioteca: { label: "Biblioteca", code: "BIB" },
+
+   A cor é atribuída automaticamente pela paleta em
+   CATEGORY_PALETTE (logo acima de CATEGORIES) — não é preciso
+   mexer no style.css. Se você quiser trocar alguma cor específica,
+   edite os valores hexadecimais dentro de CATEGORY_PALETTE.
+
+Qualquer dúvida, é só pedir ajustes de cores, categorias, textos
+ou comportamento da busca.
