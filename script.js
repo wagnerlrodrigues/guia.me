@@ -649,8 +649,8 @@ function updateModal() {
 
   if (!url) {
     fallbackFilename.textContent = item.driveLink
-      ? "Não foi possível reconhecer esse link do Google Drive."
-      : "Nenhum link do Google Drive cadastrado para esta ficha ainda.";
+      ? "Não foi possível reconhecer esse link"
+      : "Visualização indisponível, consulte outro material disponível no card do guia.";
     zoomViewport.hidden = true;
     zoomToolbar.hidden = true;
     modalFallback.hidden = false;
@@ -667,7 +667,7 @@ function updateModal() {
 modalImg.addEventListener("error", () => {
   if (!modalOverlay.hidden) {
     fallbackFilename.textContent =
-      "Não foi possível carregar a imagem. Verifique se o compartilhamento do arquivo no Drive está definido como \"Qualquer pessoa com o link\".";
+      "Não foi possível carregar a imagem. Verifique o método de compartilhamento.";
     zoomViewport.hidden = true;
     zoomToolbar.hidden = true;
     modalFallback.hidden = false;
