@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guia de Implantação — Busca de Dúvidas</title>
+<meta name="description" content="Guia interativo de implantação. Pesquise sua dúvida e encontre a página correspondente." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="../index.html" class="site-nav-brand">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 5.5C4 4.67 4.67 4 5.5 4H11.5V20H5.5C4.67 20 4 19.33 4 18.5V5.5Z"></path>
+        <path d="M20 5.5C20 4.67 19.33 4 18.5 4H12.5V20H18.5C19.33 20 20 19.33 20 18.5V5.5Z"></path>
+        <path d="M12 4V20"></path>
+      </svg>
+      MANUAIS
+    </a>
+
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <ul class="site-nav-links" id="siteNavLinks">
+      <!-- Ajuste o texto e o "href" de cada item para apontar para a página correspondente -->
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../guia-mobieduca/mobieduca.html">Manual DSK</a></li>
+      <li><a href="implantacao.html" class="active">Guia de Implantação</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="cover">
+  <div class="cover-inner">
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 5.5C4 4.67 4.67 4 5.5 4H11.5V20H5.5C4.67 20 4 19.33 4 18.5V5.5Z"></path>
+        <path d="M20 5.5C20 4.67 19.33 4 18.5 4H12.5V20H18.5C19.33 20 20 19.33 20 18.5V5.5Z"></path>
+        <path d="M12 4V20"></path>
+      </svg>
+      <span class="eyebrow">IMPLANTAÇÃO &middot; Guia de Configuração</span>
+    </div>
+    <h1>Guia inicial para novas escolas MobiEduca.Me</h1>
+    <p class="lede">Este guia visa auxiliar a equipe escolar no passo a passo inicial para configurar, validar e operar as ferramentas da plataforma Mobieduca.me (DSK e Central) de forma simples, organizada e funcional.</p>
+
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input
+        id="search"
+        type="text"
+        placeholder="ex.: como configurar o sistema, cadastrar usuário, integrar plataforma..."
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button type="button" id="clearBtn" class="clear-btn" hidden aria-label="Limpar busca">&times;</button>
+    </div>
+
+    <nav class="tabs" id="tabs" aria-label="Filtrar por seção"></nav>
+  </div>
+</header>
+
+<main>
+        <p class="lede">Siga as etapas abaixo para configurar e operar as ferramentas da plataforma Mobieduca.me: </p>
+
+  <div class="status-bar">
+    <span id="resultCount"></span>
+  </div>
+
+  <section class="card-grid" id="grid" aria-live="polite"></section>
+
+  <div class="empty-state" id="emptyState" hidden>
+    <div class="empty-mark">?</div>
+    <h2>Nenhuma ficha encontrada</h2>
+    <p>Não encontramos nada para <strong id="emptyQuery"></strong>.</p>
+    <p class="empty-hint">Tente um termo mais simples, como "notas", "matrícula", "ponto" ou "avaliação".</p>
+  </div>
+</main>
+
+<footer>
+  <p>Manual Central &mdash; clique em "Abrir ficha" para ver a página correspondente do manual.</p>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Fechar">&times;</button>
+    <button class="modal-nav prev" id="modalPrev" aria-label="Ficha anterior">&#8249;</button>
+    <button class="modal-nav next" id="modalNext" aria-label="Próxima ficha">&#8250;</button>
+
+    <div class="modal-body">
+      <aside class="modal-notes" id="modalNotes" hidden>
+        <h3 class="modal-notes-title">Observações</h3>
+        <div class="modal-notes-text" id="modalNotesText"></div>
+      </aside>
+
+      <div class="modal-main">
+        <div class="modal-frame" id="modalFrame">
+          <div class="zoom-viewport" id="zoomViewport">
+            <img id="modalImg" src="" alt="" draggable="false" />
+          </div>
+
+          <div class="modal-fallback" id="modalFallback" hidden>
+            <div class="fallback-code" id="fallbackCode"></div>
+            <p>Imagem indisponível</p>
+            <p class="fallback-filename" id="fallbackFilename"></p>
+          </div>
+
+          <div class="zoom-toolbar" id="zoomToolbar">
+            <button type="button" class="zoom-btn" id="zoomOutBtn" aria-label="Diminuir zoom">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <span class="zoom-level" id="zoomLevel">100%</span>
+            <button type="button" class="zoom-btn" id="zoomInBtn" aria-label="Aumentar zoom">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <span class="zoom-divider"></span>
+            <button type="button" class="zoom-btn" id="zoomResetBtn" aria-label="Restaurar zoom">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9V4h5"></path>
+                <path d="M20 15v5h-5"></path>
+                <path d="M4 4l6 6"></path>
+                <path d="M20 20l-6-6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-caption">
+          <span class="modal-tag" id="modalTag"></span>
+          <h2 id="modalTitle"></h2>
+          <a href="#" id="modalOpenDrive" class="card-btn primary modal-external-link" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Abrir arquivo completo no Drive
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="videoModalOverlay" hidden>
+  <div class="modal video-modal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+    <button class="modal-close" id="videoModalClose" aria-label="Fechar">&times;</button>
+
+    <div class="modal-body">
+      <aside class="modal-notes" id="videoModalNotes" hidden>
+        <h3 class="modal-notes-title">Observações</h3>
+        <div class="modal-notes-text" id="videoModalNotesText"></div>
+      </aside>
+
+      <div class="modal-main">
+        <div class="video-frame">
+          <iframe
+            id="videoIframe"
+            src=""
+            title="Vídeo do manual"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="modal-caption">
+          <span class="modal-tag" id="videoModalTag"></span>
+          <h2 id="videoModalTitle"></h2>
+          <a href="#" id="videoOpenYoutube" class="card-btn primary modal-external-link" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Abrir no YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="implantacao-dados.js"></script>
+<script src="../assets/manual-engine.js"></script>
+</body>
+</html>
