@@ -229,6 +229,39 @@ body {
   margin: 0 auto;
 }
 
+.cover-inner--with-image {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.cover-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.cover-image {
+  flex-shrink: 0;
+  width: 350px;
+  max-width: 40%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+@media (max-width: 780px) {
+  .cover-inner--with-image {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cover-image {
+    max-width: 100%;
+    width: 100%;
+    order: -1;
+  }
+}
+
 .brand {
   display: flex;
   align-items: center;

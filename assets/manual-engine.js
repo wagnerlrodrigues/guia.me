@@ -15,9 +15,9 @@
 // não é preciso cadastrar nada no CSS.
 const CATEGORY_PALETTE = [
   { color: "#2454B5", soft: "#E9F0FC" },
-  { color: "#0F6FA6", soft: "#E4F2FA" },
-  { color: "#4A5FC1", soft: "#ECEEFB" },
-  { color: "#0F4C91", soft: "#E5EDF9" },
+  { color: "#0fa692", soft: "#E4F2FA" },
+  { color: "#c14a4a", soft: "#ECEEFB" },
+  { color: "#916e0f", soft: "#E5EDF9" },
   { color: "#2E8FBF", soft: "#E6F3FA" },
   { color: "#5D6FB8", soft: "#EDEFFA" },
   { color: "#17679E", soft: "#E4F0F8" },

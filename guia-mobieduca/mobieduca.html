@@ -36,41 +36,46 @@
     <ul class="site-nav-links" id="siteNavLinks">
       <!-- Ajuste o texto e o "href" de cada item para apontar para a página correspondente -->
       <li><a href="../index.html">Início</a></li>
-      <li><a href="../guia-mobieduca/mobieduca.html" class="active">Manual DSK</a></li>
+      <li><a href="mobieduca.html" class="active">Manual DSK</a></li>
       <li><a href="../guia-implantacao/implantacao.html">Guia de Implantação</a></li>
+      <li><a href="../guia-central/central.html">Central MobiEduca.Me</a></li>
     </ul>
   </div>
 </nav>
 
 <header class="cover">
-  <div class="cover-inner">
-    <div class="brand">
-      <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 5.5C4 4.67 4.67 4 5.5 4H11.5V20H5.5C4.67 20 4 19.33 4 18.5V5.5Z"></path>
-        <path d="M20 5.5C20 4.67 19.33 4 18.5 4H12.5V20H18.5C19.33 20 20 19.33 20 18.5V5.5Z"></path>
-        <path d="M12 4V20"></path>
-      </svg>
-      <span class="eyebrow">DSK &middot; Sistema de Gestão Escolar</span>
-    </div>
-    <h1>Manual DSK</h1>
-    <p class="lede">Este guia visa auxiliar a equipe escolar no passo a passo inicial para configurar, validar e operar as ferramentas da plataforma Mobieduca.me DSK de forma simples, organizada e funcional.</p>
+  <div class="cover-inner cover-inner--with-image">
+    <div class="cover-text">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 5.5C4 4.67 4.67 4 5.5 4H11.5V20H5.5C4.67 20 4 19.33 4 18.5V5.5Z"></path>
+          <path d="M20 5.5C20 4.67 19.33 4 18.5 4H12.5V20H18.5C19.33 20 20 19.33 20 18.5V5.5Z"></path>
+          <path d="M12 4V20"></path>
+        </svg>
+        <span class="eyebrow">DSK &middot; Sistema de Gestão Escolar</span>
+      </div>
+      <h1>Manual DSK</h1>
+      <p class="lede">Este guia visa auxiliar a equipe escolar no passo a passo inicial para configurar, validar e operar as ferramentas da plataforma Mobieduca.me DSK de forma simples, organizada e funcional.</p>
 
-    <div class="search-box">
-      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="7"></circle>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-      </svg>
-      <input
-        id="search"
-        type="text"
-        placeholder="ex.: como matricular aluno, lançar notas, gerar carteirinha..."
-        autocomplete="off"
-        spellcheck="false"
-      />
-      <button type="button" id="clearBtn" class="clear-btn" hidden aria-label="Limpar busca">&times;</button>
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          id="search"
+          type="text"
+          placeholder="ex.: como matricular aluno, lançar notas, gerar carteirinha..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button type="button" id="clearBtn" class="clear-btn" hidden aria-label="Limpar busca">&times;</button>
+      </div>
+
+      <nav class="tabs" id="tabs" aria-label="Filtrar por seção"></nav>
     </div>
 
-    <nav class="tabs" id="tabs" aria-label="Filtrar por seção"></nav>
+    <img src="../assets/imagens/capa-inicial.png" alt="Ilustração do Manual DSK" class="cover-image" />
   </div>
 </header>
 
